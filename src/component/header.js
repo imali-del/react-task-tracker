@@ -1,15 +1,23 @@
-function header({title}) {
+import * as React from 'react';
+import { useLocation } from 'react-router-dom';
+import Button from "./Button"
+
+
+function Header({onAdd,showAddTask}) {
+ 
+  const location = useLocation();
+
   return (
     <div>
     <header>
-        <h1>{title}</h1>
+       {location.pathname === '/' && <Button color={showAddTask ? 'red':'green'} text={showAddTask ? 'Close' : 'Add Task'} onAdd={onAdd} />}
     </header>   
     </div>
   )
 }
 
-header.defaultProps = {
+Header.defaultProps = {
     title : 'Task Tracker',
 }
 
-export default header
+export default Header
